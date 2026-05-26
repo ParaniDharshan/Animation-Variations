@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Container, Typography, Chip } from "@mui/material";
+import { Verified as VerifiedIcon } from "@mui/icons-material";
 import SpiralBg from "../common-components/SpiralBg";
 import { PRIMARY, SECONDARY } from "../../constants";
 import PeriImage from "../../assets/Peri_Sir_Image.png";
@@ -38,7 +39,7 @@ export default function FounderHero() {
 
           {/* Right content block */}
           <Box sx={{ alignSelf: { md: "center" } }}>
-            <Chip label="About the Founder" sx={{ mb:3, background:`${PRIMARY}20`, color:PRIMARY, fontWeight:700 }} />
+            <Chip icon={<VerifiedIcon sx={{ color: `${PRIMARY} !important` }} />} label="About the Founder" sx={{ mb:3, background:`${PRIMARY}20`, color:PRIMARY, fontWeight:700 }} />
             <Typography variant="h2" sx={{ fontSize:{ xs:"2rem",md:"2.8rem" }, mb:1 }}>
               M. Peri Periasamy
             </Typography>
