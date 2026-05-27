@@ -1,7 +1,7 @@
 import React from "react";
 import { useScrollTrigger, Slide, Fab } from "@mui/material";
 import { KeyboardArrowUp as ArrowUpIcon } from "@mui/icons-material";
-import { PRIMARY, SECONDARY } from "../constants";
+import { PRIMARY, SECONDARY } from "../../constants";
 
 function ScrollToTop() {
   const trigger = useScrollTrigger({ threshold: 300, disableHysteresis: true });

@@ -6,6 +6,10 @@ import ScrollToTop from "./Components/common-components/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Gallery from "./pages/Gallery";
+import OfficeGallery from "./Components/gallery-components/OfficeGallery";
+import TeamGallery from "./Components/gallery-components/TeamGallery";
+import EventsGallery from "./Components/gallery-components/EventsGallery";
 import WhyCRKL from "./pages/WhyCRKL";
 import Contact from "./pages/Contact";
 import { PRIMARY, SECONDARY } from "./constants";
@@ -29,10 +33,10 @@ const buildTheme = (mode) =>
       h4: { fontFamily: "'Sora', 'sans-serif'", fontWeight: 600 },
       h5: { fontFamily: "'Sora', 'sans-serif'", fontWeight: 600 },
     },
-    shape: { borderRadius: 14 },
+    shape: { borderRadius: 10 },
     components: {
       MuiButton: { styleOverrides: { root: { textTransform: "none", fontWeight: 600, borderRadius: 10 } } },
-      MuiCard:   { styleOverrides: { root: { borderRadius: 18 } } },
+      MuiCard:   { styleOverrides: { root: { borderRadius: 12 } } },
     },
   });
 
@@ -53,6 +57,10 @@ export default function App() {
       case "Home":        return <Home />;
       case "About":       return <About />;
       case "Services":    return <Services />;
+      case "Gallery":     return <Gallery setActiveTab={setActiveTab} />;
+      case "Office":      return <OfficeGallery setActiveTab={setActiveTab} />;
+      case "Team":        return <TeamGallery setActiveTab={setActiveTab} />;
+      case "Events":      return <EventsGallery setActiveTab={setActiveTab} />;
       case "Why CRKL":    return <WhyCRKL />;
       case "Contact":     return <Contact />;
       default:            return <Home />;

@@ -3,7 +3,7 @@ export const PRIMARY = "#1d89c8";
 export const SECONDARY = "#3eb8af";
 export const BOOKING_URL = "#";
 
-export const NAV_LINKS = ["Home", "About", "Services", "Why CRKL", "Contact"];
+export const NAV_LINKS = ["Home", "About", "Services", "Gallery", "Why CRKL", "Contact"];
 
 export const SERVICES = [
 	{
@@ -11,12 +11,30 @@ export const SERVICES = [
 		title: "Accounting & Finance",
 		summary: "End-to-end financial operations support — from daily transaction recording to month-end close and CPA collaboration. Built for U.S. SMEs using QuickBooks Online.",
 		items: [
-			"Chart of Accounts setup & bookkeeping",
-			"Accounts Payable — supplier & vendor management",
-			"Accounts Receivable — invoicing & customer accounts",
-			"Account reconciliation & financial reporting",
-			"Payroll reconciliation & month-end close",
-			"CPA coordination",
+			{
+				title: "Chart of Accounts setup & bookkeeping",
+				description: "We design and maintain a clear Chart of Accounts tailored to your business, and record transactions accurately for reliable financial statements.",
+			},
+			{
+				title: "Accounts Payable — supplier & vendor management",
+				description: "Manage vendor invoices, timely payments, and supplier relationships to optimize cash flow and avoid late fees.",
+			},
+			{
+				title: "Accounts Receivable — invoicing & customer accounts",
+				description: "Handle invoicing, collections, and customer account reconciliation to accelerate receivables and reduce days-sales-outstanding.",
+			},
+			{
+				title: "Account reconciliation & financial reporting",
+				description: "Perform regular reconciliations and prepare meaningful financial reports to support decision-making and tax preparation.",
+			},
+			{
+				title: "Payroll reconciliation & month-end close",
+				description: "Reconcile payroll entries, ensure compliance, and complete month-end close processes accurately.",
+			},
+			{
+				title: "CPA coordination",
+				description: "Coordinate with your CPA for tax filings, audit support, and year-end close to ensure a smooth handoff.",
+			},
 		],
 		tag: "QuickBooks Online",
 		color: PRIMARY,
@@ -26,12 +44,30 @@ export const SERVICES = [
 		title: "Tax Services",
 		summary: "Comprehensive U.S. tax support handled by an IRS Enrolled Agent — qualified to prepare, research, and represent your business before the IRS.",
 		items: [
-			"Preparation of Tax returns",
-			"Financial workbook preparation",
-			"Tax workpaper preparation",
-			"Research & Analysis",
-			"CPA coordination",
-			"Client communication",
+			{
+				title: "Preparation of Tax returns",
+				description: "Prepare federal and state business tax returns accurately, minimizing liabilities while ensuring compliance.",
+			},
+			{
+				title: "Financial workbook preparation",
+				description: "Assemble detailed financial workpapers and supporting schedules for tax filing and CPA review.",
+			},
+			{
+				title: "Tax workpaper preparation",
+				description: "Document tax adjustments and supporting analyses to substantiate positions taken on returns.",
+			},
+			{
+				title: "Research & Analysis",
+				description: "Provide tax research and analysis to identify planning opportunities and resolve complex issues.",
+			},
+			{
+				title: "CPA coordination",
+				description: "Work with CPAs to share records, clarify questions, and implement recommended tax strategies.",
+			},
+			{
+				title: "Client communication",
+				description: "Maintain transparent client communication on deadlines, filing status, and required documentation.",
+			},
 		],
 		tag: "IRS Enrolled Agent",
 		color: SECONDARY,
@@ -41,16 +77,36 @@ export const SERVICES = [
 		title: "IT Services",
 		summary: "Technology support for SMEs who need reliable systems without maintaining a full in-house IT team. Written for business owners — no technical background required.",
 		items: [
-			"Custom web applications (MERN stack)",
-			"Workflow automation & process improvement",
-			"System operations & maintenance",
-			"Data management & security support",
-			"Automation to reduce manual errors",
+			{
+				title: "Custom web applications (MERN stack)",
+				description: "Design and build scalable full-stack web applications using MongoDB, Express, React, and Node tailored to your workflows.",
+			},
+			{
+				title: "Workflow automation & process improvement",
+				description: "Automate repetitive tasks and improve processes to reduce manual effort and errors.",
+			},
+			{
+				title: "System operations & maintenance",
+				description: "Monitor and maintain systems, handle updates, backups, and incident response for reliable uptime.",
+			},
+			{
+				title: "Data management & security support",
+				description: "Implement data organization, backups, and security measures to protect business information.",
+			},
+			{
+				title: "Automation to reduce manual errors",
+				description: "Deploy automations that minimize manual data entry and improve operational accuracy.",
+			},
 		],
 		tag: "MERN Stack",
 		color: PRIMARY,
 	},
 ];
+
+// Office page hero image part
+export const HERO_BG = {
+	office: new URL("./assets/Office/Conference Hall.jpg", import.meta.url).href,
+};
 
 export const TIMELINE = [
 	{ year: "Madurai Roots", text: "Born and raised in Madurai, Tamil Nadu. Worked in his father's small hardware distribution business — learning cash flow, customer trust, and the weight of building something by hand." },

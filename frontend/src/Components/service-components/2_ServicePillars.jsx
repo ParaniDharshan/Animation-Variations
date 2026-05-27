@@ -1,130 +1,223 @@
-import React from "react";
-import { Box, Container, Grid, Typography, Chip } from "@mui/material";
-import { SERVICES, PRIMARY, SECONDARY } from "../../constants";
+import React, { useState } from "react";
+import {
+  Box,
+  Typography,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { SERVICES } from "../../constants";
+import { useTheme, alpha } from "@mui/material/styles";
+
+const SERVICE_MEDIA = {
+  "Accounting & Finance": new URL("../../assets/Videos/Accounting & Finance.mp4", import.meta.url).href,
+  "Tax Services": new URL("../../assets/Videos/Tax Services.mp4", import.meta.url).href,
+  "IT Services": new URL("../../assets/Videos/IT Services.mp4", import.meta.url).href,
+};
 
 export default function ServicePillars() {
+  const theme = useTheme();
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
+  const getItemKey  = (item) => (typeof item === "string" ? item : item.title);
+  const getItemDesc = (item, title) =>
+    typeof item === "object" && item.description
+      ? item.description
+      : `Detailed support for ${title.toLowerCase()} is handled here. You can replace this text with custom copy later.`;
+
   return (
-    <>
-      {SERVICES.map((s, i) => (
-        <Box
-          key={i}
-          sx={{
-            pt: { xs: 4, md: 6 },   // ✅ reduced top space
-            pb: { xs: 8, md: 10 },  // ✅ keeps bottom spacing balanced
-            background:
-              i % 2 !== 0
-                ? `linear-gradient(160deg,${s.color}08 0%,transparent 60%)`
-                : "transparent",
-          }}
-        >
-          <Container maxWidth="lg">
-            <Grid
-              container
-              spacing={6}
-              alignItems="center"
-              direction={i % 2 !== 0 ? "row-reverse" : "row"}
-            >
-              {/* LEFT CARD */}
-              <Grid item xs={12} md={5}>
-                <Box
-                  sx={{
-                    p: 4,
-                    borderRadius: "24px",
-                    background: `linear-gradient(135deg,${s.color}15,${s.color}08)`,
-                    border: `2px solid ${s.color}25`,
-                    textAlign: "center",
-                  }}
-                >
-                  <Typography sx={{ fontSize: "5rem", mb: 2 }}>
-                    {s.icon}
-                  </Typography>
+    <Box
+      sx={{
+        maxWidth: "1200px",
+        mx: "auto",
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+        px: { xs: 2, md: 5 },
+        py: { xs: 6, md: 10 },
+      }}
+    >
+      <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>
+        <Typography variant="h3" sx={{ fontWeight: 900 }}>
+          Our Services
+        </Typography>
+        <Typography sx={{ opacity: 0.7, mt: 1 }}>
+          Practical, scalable teams and systems that support your day-to-day operations.
+        </Typography>
+      </Box>
+      {SERVICES.map((s, i) => {
+        const isReverse = i % 2 !== 0;
 
-                  <Typography
-                    variant="h4"
-                    sx={{ fontWeight: 800, color: s.color, mb: 1 }}
-                  >
-                    Pillar {i + 1} of 3
-                  </Typography>
+        const VideoCol = (
+          <Box
+            sx={{
+              width: { xs: "100%", md: "50%" },
+              minHeight: { xs: 200, md: 320 },
+              backgroundColor: "#000",
+              position: "relative",
+              overflow: "hidden",
+              flexShrink: 0,
+            }}
+          >
+            {SERVICE_MEDIA[s.title] && (
+              <Box
+                component="video"
+                src={SERVICE_MEDIA[s.title]}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                sx={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                  transition: "transform 0.5s ease",
+                  "&:hover": { transform: "scale(1.04)" },
+                }}
+              />
+            )}
+            <Box
+              sx={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(0,0,0,0.18) 100%)",
+              }}
+            />
+          </Box>
+        );
 
-                  <Typography variant="h5" sx={{ fontWeight: 700 }}>
-                    {s.title}
-                  </Typography>
+        const TextCol = (
+          <Box
+            sx={{
+              width: { xs: "100%", md: "50%" },
+              p: { xs: 2, md: 3 },
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <Typography variant="h4" sx={{ fontWeight: 800, mb: 1 }}>
+              {s.title}
+            </Typography>
 
-                  <Chip
-                    label={s.tag}
+            <Typography sx={{ opacity: 0.72, lineHeight: 1.85, mb: 2, fontWeight: 600 }}>
+              {s.summary}
+            </Typography>
+
+            {/* MUI Accordion */}
+            <Box>
+              {s.items.map((item, idx) => {
+                const key  = getItemKey(item);
+                const desc = getItemDesc(item, s.title);
+                const panelId = `${i}-${idx}`;
+
+                return (
+                  <Accordion
+                    key={key}
+                    expanded={expanded === panelId}
+                    onChange={handleChange(panelId)}
+                    disableGutters
+                    elevation={0}
                     sx={{
-                      mt: 2,
-                      background: `${s.color}20`,
-                      color: s.color,
-                      fontWeight: 700,
-                    }}
-                  />
-                </Box>
-              </Grid>
-
-              {/* RIGHT CONTENT */}
-              <Grid item xs={12} md={7}>
-                <Typography
-                  variant="h4"
-                  sx={{ fontWeight: 700, mb: 2 }}
-                >
-                  {s.title}
-                </Typography>
-
-                <Typography
-                  sx={{
-                    opacity: 0.72,
-                    lineHeight: 1.85,
-                    mb: 3,
-                  }}
-                >
-                  {s.summary}
-                </Typography>
-
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 1.5,
-                  }}
-                >
-                  {s.items.map((item) => (
-                    <Box
-                      key={item}
-                      sx={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: 1.5,
+                        backgroundColor: "transparent",
+                        borderBottom: "1px solid",
+                        borderColor: "divider",
+                        "&:before": { display: "none" },
+                        "&.Mui-expanded": {
+                          backgroundColor: alpha(s.color, 0.06),
+                        },
+                      }}
+                  >
+                    <AccordionSummary
+                      expandIcon={
+                        <AddIcon
+                          sx={{
+                            color: s.color,
+                            fontSize: 22,
+                            transition: "transform 0.25s ease",
+                            transform:
+                              expanded === panelId
+                                ? "rotate(45deg)"
+                                : "rotate(0deg)",
+                          }}
+                        />
+                      }
+                        sx={{
+                        px: 1,
+                        minHeight: 48,
+                        "& .MuiAccordionSummary-expandIconWrapper": {
+                          transform: "none !important",
+                        },
+                        "&:hover": { backgroundColor: alpha(s.color, 0.06) },
                       }}
                     >
-                      <Typography
-                        sx={{
-                          fontSize: 20,
-                          color: s.color,
-                          mt: 0.2,
-                          flexShrink: 0,
-                        }}
-                      >
-                        ✓
+                      <Typography sx={{ fontWeight: 700, fontSize: "0.97rem" }}>
+                        {key}
                       </Typography>
+                    </AccordionSummary>
 
+                    <AccordionDetails sx={{ px: 1, pt: 0, pb: 2 }}>
                       <Typography
                         variant="body2"
-                        sx={{
-                          opacity: 0.8,
-                          lineHeight: 1.7,
-                        }}
+                        sx={{ opacity: 0.78, lineHeight: 1.7 }}
                       >
-                        {item}
+                        {desc}
                       </Typography>
-                    </Box>
-                  ))}
-                </Box>
-              </Grid>
-            </Grid>
-          </Container>
-        </Box>
-      ))}
-    </>
+                    </AccordionDetails>
+                  </Accordion>
+                );
+              })}
+            </Box>
+          </Box>
+        );
+
+        const cardBg =
+          theme.palette.mode === "dark"
+            ? `linear-gradient(135deg, ${alpha(s.color, 0.06)}, ${alpha(
+                theme.palette.background.paper,
+                0.06
+              )})`
+            : `linear-gradient(135deg, ${alpha(s.color, 0.07)}, ${alpha(
+                theme.palette.background.paper,
+                0.97
+              )})`;
+
+        const cardBoxShadow =
+          theme.palette.mode === "dark"
+            ? "0 8px 40px rgba(0,0,0,0.6)"
+            : "0 8px 40px rgba(15,40,70,0.10)";
+
+        const cardBorder = `1px solid ${alpha(s.color, 0.2)}`;
+
+        return (
+          <Box
+            key={i}
+            sx={{
+              borderRadius: "16px",
+              overflow: "hidden",
+              boxShadow: cardBoxShadow,
+              border: cardBorder,
+              background: cardBg,
+              display: "flex",
+              flexDirection: { xs: "column", md: isReverse ? "row-reverse" : "row" },
+              minHeight: { md: 320 },
+            }}
+          >
+            {VideoCol}
+            {TextCol}
+          </Box>
+        );
+      })}
+    </Box>
   );
 }
