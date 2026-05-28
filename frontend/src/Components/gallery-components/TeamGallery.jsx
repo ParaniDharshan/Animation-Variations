@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { Box, Button } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 import CategoryGallery from "./CategoryGallery";
-import { SECONDARY } from "../../constants";
+import { SECONDARY } from "../../Constants.js";
 import { teamItems } from "./TeamCard";
 
 function TeamGallery(props) {
