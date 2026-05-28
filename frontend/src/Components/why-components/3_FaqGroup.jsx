@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Container, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Stack, Divider } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { PRIMARY, SECONDARY, CONCERNS } from "../../constants";
 
@@ -8,13 +8,13 @@ const FAQAccordion = styled(Accordion)(({ theme }) => ({
   borderRadius: 18,
   overflow: "hidden",
   border: `1px solid ${theme.palette.divider}`,
-  background: "rgba(255,255,255,0.72)",
+  background: theme.palette.mode === "dark" ? "rgba(13, 33, 55, 0.84)" : "rgba(255,255,255,0.72)",
   backdropFilter: "blur(12px)",
   transition: "transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease",
   "&:before": { display: "none" },
   "&.Mui-expanded": {
     margin: 0,
-    boxShadow: `0 18px 40px ${PRIMARY}18`,
+    boxShadow: theme.palette.mode === "dark" ? "0 18px 40px rgba(0,0,0,0.38)" : `0 18px 40px ${PRIMARY}18`,
     transform: "translateY(-1px)",
   },
 }));
@@ -38,6 +38,8 @@ const AccentDot = styled(Box)(({ theme }) => ({
 }));
 
 export default function FaqGroup() {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
   const [expanded, setExpanded] = useState(false);
   const toggle = (p) => (_, isExp) => setExpanded(isExp ? p : false);
 
@@ -50,14 +52,14 @@ export default function FaqGroup() {
   ];
 
   return (
-    <Box sx={{ py:{ xs:8,md:12 }, background:`linear-gradient(160deg,${PRIMARY}0d 0%,${SECONDARY}0d 100%)` }}>
+    <Box sx={{ py:{ xs:8,md:12 }, background: isDark ? "linear-gradient(180deg, #0a1929 0%, #07131f 100%)" : `linear-gradient(160deg,${PRIMARY}0d 0%,${SECONDARY}0d 100%)` }}>
       <Container maxWidth="md">
         <Box sx={{ textAlign:"center", mb:7 }}>
           <Chip label="FAQ" sx={{ mb:2, background:`${SECONDARY}20`, color:SECONDARY, fontWeight:800, px:1.2 }} />
-          <Typography variant="h2" sx={{ fontSize:{ xs:"2rem",md:"2.6rem" }, mb:1.5, fontWeight:800 }}>
+          <Typography variant="h2" sx={{ fontSize:{ xs:"2rem",md:"2.6rem" }, mb:1.5, fontWeight:800, color: isDark ? "common.white" : "text.primary" }}>
             Every question answered
           </Typography>
-          <Typography sx={{ opacity:0.65, maxWidth:620, mx:"auto", lineHeight:1.8 }}>
+          <Typography sx={{ opacity:isDark ? 0.82 : 0.65, maxWidth:620, mx:"auto", lineHeight:1.8, color: isDark ? "rgba(255,255,255,0.78)" : "text.secondary" }}>
             A cleaner view of the most common questions, organized by topic so visitors can expand only what they need.
           </Typography>
         </Box>
@@ -69,7 +71,7 @@ export default function FaqGroup() {
               <Typography sx={{ fontWeight:800, color:gi%2===0?PRIMARY:SECONDARY, fontSize:"0.82rem", textTransform:"uppercase", letterSpacing:1.7 }}>
                 {group.label}
               </Typography>
-              <Divider sx={{ flex:1, borderColor: "rgba(0,0,0,0.08)" }} />
+              <Divider sx={{ flex:1, borderColor: isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)" }} />
             </Stack>
             <Box sx={{ display:"flex", flexDirection:"column", gap:1.5 }}>
               {group.items.map((item, i) => {
@@ -81,11 +83,11 @@ export default function FaqGroup() {
                         <Box sx={{ width:36, height:36, borderRadius:"12px", display:"grid", placeItems:"center", bgcolor:`${expanded===key ? (gi%2===0?PRIMARY:SECONDARY) : PRIMARY}12`, color:expanded===key?(gi%2===0?PRIMARY:SECONDARY):PRIMARY, fontWeight:800, flexShrink:0 }}>
                           Q
                         </Box>
-                        <Typography sx={{ fontWeight:700, fontSize:"0.98rem", lineHeight:1.4 }}>{item.q}</Typography>
+                        <Typography sx={{ fontWeight:700, fontSize:"0.98rem", lineHeight:1.4, color: isDark ? "common.white" : "text.primary" }}>{item.q}</Typography>
                       </Box>
                     </FAQSummary>
                     <AccordionDetails sx={{ px:3, pb:3, pt:0 }}>
-                      <Typography sx={{ opacity:0.76, lineHeight:1.85, pl:6 }}>
+                      <Typography sx={{ opacity:isDark ? 0.82 : 0.76, lineHeight:1.85, pl:6, color: isDark ? "rgba(255,255,255,0.78)" : "text.secondary" }}>
                         {item.a}
                       </Typography>
                     </AccordionDetails>

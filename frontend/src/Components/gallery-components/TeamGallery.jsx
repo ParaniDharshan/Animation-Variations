@@ -31,7 +31,7 @@ function TeamGallery(props) {
       items={filteredItems}
       accent={SECONDARY}
       centered
-      backButtonPosition="bottom"
+      backButtonPosition="top"
       actions={
         <Box
           sx={{

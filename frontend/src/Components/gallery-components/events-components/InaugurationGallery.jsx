@@ -1,5 +1,5 @@
 import React from "react";
-import Masonry from "../Masonry";
+import CategoryGallery from "../CategoryGallery";
 
 const inaugurationItems = [
 	{ id: "inauguration-1", img: new URL("../../../assets/Events/Inaugration/IMG20250414113206.webp", import.meta.url).href, url: new URL("../../../assets/Events/Inaugration/IMG20250414113206.webp", import.meta.url).href, height: 450 },
@@ -12,8 +12,20 @@ const inaugurationItems = [
 	{ id: "inauguration-8", img: new URL("../../../assets/Events/Inaugration/IMG20250414111437.webp", import.meta.url).href, url: new URL("../../../assets/Events/Inaugration/IMG20250414111437.webp", import.meta.url).href, height: 830 },
 ];
 
-function InaugurationGallery() {
-	return <Masonry items={inaugurationItems} colorShiftOnHover />;
+function InaugurationGallery(props) {
+	return (
+		<CategoryGallery
+			title="Inauguration"
+			subtitle="Opening day moments and ceremony highlights."
+			items={inaugurationItems}
+			backTab="Events"
+			backButtonPosition="top"
+			centered
+			setActiveTab={props.setActiveTab}
+			onBack={props.onBack}
+			{...props}
+		/>
+	);
 }
 
 export default InaugurationGallery;

@@ -6,7 +6,6 @@ import {
   CardActionArea,
   CardMedia,
   Container,
-  Stack,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
@@ -61,7 +60,12 @@ function EventsGallery({ setActiveTab }) {
     window.scrollTo({ top: 0, left: 0 });
   }, []);
 
-  // If URL contains /events/:key, open that event directly. Also handle back/forward.
+  useEffect(() => {
+    if (window.location.pathname === "/events") {
+      setSelectedGroup(null);
+    }
+  }, []);
+
   useEffect(() => {
     const checkPath = () => {
       const parts = window.location.pathname.split("/").filter(Boolean);
@@ -98,8 +102,26 @@ function EventsGallery({ setActiveTab }) {
     <Box sx={pageStyles}>
       <Container maxWidth="xl">
         {!selectedData && (
-          <Box sx={{ mb: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-            <Typography variant="h2" sx={{ fontWeight: 800, mb: 2 }}>
+          <Box
+            sx={{
+              mb: 4,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              // FIX: horizontal padding so title doesn't touch edges on mobile
+              px: { xs: 2, sm: 0 },
+            }}
+          >
+            {/* FIX: responsive font size */}
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 800,
+                mb: 2,
+                fontSize: { xs: "1.75rem", sm: "2.25rem", md: "3rem", lg: "3.75rem" },
+              }}
+            >
               Events Gallery
             </Typography>
 
@@ -108,12 +130,33 @@ function EventsGallery({ setActiveTab }) {
                 maxWidth: 760,
                 color: "text.secondary",
                 lineHeight: 1.7,
-                margin: '0 auto'
+                margin: "0 auto",
+                fontSize: { xs: "0.9rem", sm: "1rem" },
               }}
             >
               Choose a card below to open its photo set inside the Events page.
             </Typography>
 
+            <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
+              <CTAButton
+                text="Back to Gallery"
+                size="large"
+                isBack
+                onClick={() => {
+                  if (typeof setActiveTab === "function") {
+                    setActiveTab("Gallery");
+                    try {
+                      window.history.pushState({}, "", "/gallery");
+                    } catch (e) {}
+                    window.scrollTo({ top: 0, left: 0 });
+                  } else {
+                    try {
+                      window.history.back();
+                    } catch (e) {}
+                  }
+                }}
+              />
+            </Box>
           </Box>
         )}
 
@@ -121,11 +164,13 @@ function EventsGallery({ setActiveTab }) {
           <Box
             sx={{
               display: "grid",
+              // FIX: added sm breakpoint — 2 columns on tablets instead of jumping 1→3
               gridTemplateColumns: {
                 xs: "1fr",
+                sm: "repeat(2, minmax(0, 1fr))",
                 md: "repeat(3, minmax(0, 1fr))",
               },
-              gap: { xs: 3, md: 4 },
+              gap: { xs: 2.5, sm: 3, md: 4 },
             }}
           >
             {eventGroups.map((group) => (
@@ -133,7 +178,7 @@ function EventsGallery({ setActiveTab }) {
                 key={group.key}
                 sx={{
                   borderRadius: 2,
-                  minHeight: { xs: 360, md: 430 },
+                  minHeight: { xs: 300, sm: 360, md: 430 },
                   overflow: "hidden",
                   backgroundColor: isDark
                     ? "rgba(11, 27, 43, 0.92)"
@@ -158,9 +203,7 @@ function EventsGallery({ setActiveTab }) {
                     const url = `/events/${group.key}`;
                     try {
                       window.history.pushState({}, "", url);
-                    } catch (e) {
-                      /* ignore */
-                    }
+                    } catch (e) {}
                     setSelectedGroup(group.key);
                     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                   }}
@@ -179,20 +222,34 @@ function EventsGallery({ setActiveTab }) {
                     }}
                   />
 
+                  {/* FIX: responsive padding in card overlay */}
                   <Box
                     sx={{
                       position: "absolute",
                       bottom: 0,
-                      p: 3,
+                      left: 0,
+                      right: 0,
+                      p: { xs: 2, md: 3 },
                       background:
                         "linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.7))",
                       color: "#fff",
                     }}
                   >
-                    <Typography variant="h5" sx={{ fontWeight: 800 }}>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        fontWeight: 800,
+                        fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.5rem" },
+                      }}
+                    >
                       {group.title}
                     </Typography>
-                    <Typography sx={{ opacity: 0.9 }}>
+                    <Typography
+                      sx={{
+                        opacity: 0.9,
+                        fontSize: { xs: "0.82rem", sm: "0.9rem", md: "1rem" },
+                      }}
+                    >
                       {group.description}
                     </Typography>
                   </Box>
@@ -202,74 +259,11 @@ function EventsGallery({ setActiveTab }) {
           </Box>
         ) : null}
 
-        {!selectedData && (
-          <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
-            <CTAButton
-              text="Back to Gallery"
-              size="large"
-              isBack
-              onClick={() => {
-                if (typeof setActiveTab === 'function') {
-                  setActiveTab('Gallery');
-                  window.scrollTo({ top: 0, left: 0 });
-                } else {
-                  try {
-                    window.history.back();
-                  } catch (e) {}
-                }
-              }}
-            />
-          </Box>
-        )}
-
-        {selectedData && (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-              minHeight: { xs: "60vh", md: "70vh" },
-              gap: 3,
-              my: 6,
-            }}
-          >
-            <Typography variant="h2" sx={{ fontWeight: 800 }}>
-              {selectedData.title}
-            </Typography>
-            <Typography sx={{ color: "text.secondary", maxWidth: 760 }}>
-              {selectedData.description}
-            </Typography>
-
-            <Box sx={{ width: "100%", maxWidth: 1200, mt: 3 }}>
-              <Box
-                sx={{
-                  p: 2,
-                  borderRadius: 2,
-                  background: isDark
-                    ? "linear-gradient(180deg, rgba(20,42,66,0.95), rgba(10,25,41,0.92))"
-                    : "linear-gradient(180deg, rgba(255,255,255,0.96), rgba(240,249,255,0.84))",
-                }}
-              >
-                {SelectedComponent && <SelectedComponent />}
-              </Box>
-            </Box>
-
-            <Box sx={{ mt: 3 }}>
-              <CTAButton
-                text="Back to Events Cards"
-                size="large"
-                isBack
-                onClick={() => {
-                  try {
-                    window.history.pushState({}, "", "/events");
-                  } catch (e) {}
-                  setSelectedGroup(null);
-                }}
-              />
-            </Box>
-          </Box>
+        {selectedData && SelectedComponent && (
+          <SelectedComponent
+            setActiveTab={setActiveTab}
+            onBack={() => setSelectedGroup(null)}
+          />
         )}
       </Container>
     </Box>

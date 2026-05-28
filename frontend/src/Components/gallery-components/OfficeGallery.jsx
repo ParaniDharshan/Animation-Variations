@@ -15,7 +15,6 @@ const officeItems = [
 ];
 
 function OfficeGallery(props) {
-    // Use the configured hero image from constants; if empty, show a blank hero (no default image)
     const heroImg = HERO_BG?.office;
     const hero = heroImg ? officeItems.find((it) => it.img === heroImg) : null;
     const galleryItems = hero ? officeItems.filter((it) => it.img !== hero.img) : officeItems;
@@ -25,11 +24,12 @@ function OfficeGallery(props) {
     const subtitleColor = hero ? "rgba(255,255,255,0.9)" : isDark ? "common.white" : "text.primary";
 
     return (
-        <Box sx={{ background: 'transparent' }}>
-            {/* Hero section with building image */}
+        <Box sx={{ background: "transparent", pt: { xs: 4.5, md: 5 } }}>
+            {/* Hero section */}
             <Box
                 sx={{
-                    height: { xs: 260, md: 420 },
+                    // FIX: taller on xs so title + subtitle + button all fit
+                    height: { xs: 340, sm: 380, md: 420 },
                     display: "flex",
                     alignItems: "center",
                     color: "common.white",
@@ -49,16 +49,52 @@ function OfficeGallery(props) {
                     />
                 )}
 
-                <Container sx={{ position: "relative", zIndex: 2 }} maxWidth="xl">
-                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 3 }}>
-                        <Box sx={{ width: { xs: '100%', md: '70%' } }}>
-                            <Typography variant="h2" sx={{ fontWeight: 800, color: titleColor, mb: 1 }}>
+                {/* FIX: add px padding so text doesn't touch screen edges on mobile */}
+                <Container sx={{ position: "relative", zIndex: 2, px: { xs: 2, sm: 3, md: 4 } }} maxWidth="xl">
+                    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: { xs: 2, md: 3 } }}>
+                        <Box sx={{ width: { xs: "100%", md: "70%" } }}>
+                            {/* FIX: responsive font size for h2 */}
+                            <Typography
+                                variant="h2"
+                                sx={{
+                                    fontWeight: 800,
+                                    color: titleColor,
+                                    mb: 1,
+                                    fontSize: { xs: "1.75rem", sm: "2.25rem", md: "3rem", lg: "3.75rem" },
+                                }}
+                            >
                                 Office
                             </Typography>
-                            <Typography sx={{ maxWidth: 760, color: subtitleColor, lineHeight: 1.6, margin: '0 auto' }}>
+                            <Typography
+                                sx={{
+                                    maxWidth: 760,
+                                    color: subtitleColor,
+                                    lineHeight: 1.6,
+                                    margin: "0 auto",
+                                    fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
+                                }}
+                            >
                                 A closer look at the workspace and setup behind the brand.
                             </Typography>
 
+                            <Box sx={{ mt: { xs: 2.5, md: 2 }, display: "flex", justifyContent: "center" }}>
+                                <CTAButton
+                                    text="Back to Gallery"
+                                    size="large"
+                                    isBack
+                                    onClick={() => {
+                                        if (typeof props.setActiveTab === "function") {
+                                            props.setActiveTab("Gallery");
+                                            try {
+                                                window.history.pushState({}, "", "/gallery");
+                                            } catch (e) {}
+                                            window.scrollTo({ top: 0, left: 0 });
+                                        } else {
+                                            try { window.history.back(); } catch (e) {}
+                                        }
+                                    }}
+                                />
+                            </Box>
                         </Box>
                     </Box>
                 </Container>
@@ -72,23 +108,7 @@ function OfficeGallery(props) {
                         borderRadius: 2,
                     }}
                 >
-                    <Masonry items={galleryItems} colorShiftOnHover  />
-                </Box>
-
-                <Box sx={{ mt: 3, display: 'flex', justifyContent: 'center' }}>
-                    <CTAButton
-                        text="Back to Gallery"
-                        size="large"
-                        isBack
-                        onClick={() => {
-                            if (typeof props.setActiveTab === 'function') {
-                                props.setActiveTab("Gallery");
-                                window.scrollTo({ top: 0, left: 0 });
-                            } else {
-                                try { window.history.back(); } catch (e) {}
-                            }
-                        }}
-                    />
+                    <Masonry items={galleryItems} colorShiftOnHover />
                 </Box>
             </Container>
         </Box>

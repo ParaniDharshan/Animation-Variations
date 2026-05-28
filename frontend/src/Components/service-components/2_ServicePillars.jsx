@@ -43,10 +43,26 @@ export default function ServicePillars() {
       }}
     >
       <Box sx={{ textAlign: "center", mb: { xs: 3, md: 5 } }}>
-        <Typography variant="h3" sx={{ fontWeight: 900 }}>
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: 900,
+            fontSize: { xs: "1.9rem", sm: "2.3rem", md: "2.8rem" },
+            lineHeight: 1.1,
+          }}
+        >
           Our Services
         </Typography>
-        <Typography sx={{ opacity: 0.7, mt: 1 }}>
+        <Typography
+          sx={{
+            opacity: 0.7,
+            mt: 1,
+            maxWidth: 760,
+            mx: "auto",
+            fontSize: { xs: "0.98rem", md: "1.05rem" },
+            lineHeight: 1.7,
+          }}
+        >
           Practical, scalable teams and systems that support your day-to-day operations.
         </Typography>
       </Box>

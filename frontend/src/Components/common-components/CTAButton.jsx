@@ -7,7 +7,7 @@ import {
 import { PRIMARY, SECONDARY, BOOKING_URL } from "../../constants";
 
 function CTAButton({
-  text = "Book a Free Discovery Call",
+  text,
   sub,
   size = "large",
   isBack = false,   // ✅ controls arrow direction

@@ -1,5 +1,5 @@
 import React from "react";
-import Masonry from "../Masonry";
+import CategoryGallery from "../CategoryGallery";
 
 const annualConferenceItems = [
 	{ id: "annual-conference-1", img: new URL("../../../assets/Events/Annual Conference/IMG-20250605-WA0005.webp", import.meta.url).href, url: new URL("../../../assets/Events/Annual Conference/IMG-20250605-WA0005.webp", import.meta.url).href, height: 940 },
@@ -16,8 +16,20 @@ const annualConferenceItems = [
 	{ id: "annual-conference-12", img: new URL("../../../assets/Events/Annual Conference/IMG_0008.webp", import.meta.url).href, url: new URL("../../../assets/Events/Annual Conference/IMG_0008.webp", import.meta.url).href, height: 810 },
 ];
 
-function AnnualConferenceGallery() {
-	return <Masonry items={annualConferenceItems} colorShiftOnHover />;
+function AnnualConferenceGallery(props) {
+	return (
+		<CategoryGallery
+			title="Annual Conference"
+			subtitle="Conference sessions, group photos, and event coverage."
+			items={annualConferenceItems}
+			backTab="Events"
+			backButtonPosition="top"
+			centered
+			setActiveTab={props.setActiveTab}
+			onBack={props.onBack}
+			{...props}
+		/>
+	);
 }
 
 export default AnnualConferenceGallery;
