@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, Typography, Chip } from "@mui/material";
 import CTAButton from "../common-components/CTAButton";
-import SpiralBg from "../common-components/SpiralBg";
 import { PRIMARY, SECONDARY } from "../../constants";
 
 export default function Hero() {
@@ -12,7 +11,6 @@ export default function Hero() {
       background: `radial-gradient(ellipse at 70% 40%,${SECONDARY}22 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,${PRIMARY}18 0%,transparent 50%)`,
       position: "relative", overflow: "hidden",
     }}>
-      <SpiralBg />
       <Box sx={{ position:"absolute",top:-80,right:-80,width:400,height:400,borderRadius:"50%",background:`${PRIMARY}12`,filter:"blur(60px)",pointerEvents:"none",zIndex:0 }} />
       <Box sx={{ position:"absolute",bottom:-60,left:-60,width:320,height:320,borderRadius:"50%",background:`${SECONDARY}18`,filter:"blur(50px)",pointerEvents:"none",zIndex:0 }} />
 

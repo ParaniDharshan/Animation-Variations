@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, Chip } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import SpiralBg from "../common-components/SpiralBg";
+
 import { SECONDARY } from "../../constants";
 
 export default function WhyHero() {
@@ -24,7 +24,7 @@ export default function WhyHero() {
         alignItems: "center",
       }}
     >
-      <SpiralBg />
+      
 
       <Container maxWidth="md" sx={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Chip

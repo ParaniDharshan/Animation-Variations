@@ -3,7 +3,15 @@ export const PRIMARY = "#1d89c8";
 export const SECONDARY = "#3eb8af";
 export const BOOKING_URL = "#";
 
-export const NAV_LINKS = ["Home", "About", "Services", "Gallery", "Why CRKL", "Contact"];
+export const NAV_LINKS = [
+	"Animation 1",
+	"Animation 2",
+	"Animation 3",
+	"Animation 4",
+	"Animation 5",
+	"Animation 6",
+	"Animation 7",
+];
 
 export const SERVICES = [
 	{
@@ -105,7 +113,8 @@ export const SERVICES = [
 
 // Office page hero image part
 export const HERO_BG = {
-	office: new URL("./assets/Office/Conference Hall.webp", import.meta.url).href,
+	// media removed for deployment size; use empty string as fallback
+	office: "",
 };
 
 export const TIMELINE = [

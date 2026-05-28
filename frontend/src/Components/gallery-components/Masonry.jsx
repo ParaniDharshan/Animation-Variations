@@ -189,16 +189,20 @@ const Masonry = ({
           onMouseEnter={(e) => handleMouseEnter(e, item)}
           onMouseLeave={(e) => handleMouseLeave(e, item)}
         >
-          <div className="item-img">
-            <img
-              src={item.image ?? item.img}
-              alt={item.name || ""}
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              onLoad={() => handleImageLoad(item.id)}
-              className={`item-photo${loadedIds.has(item.id) ? " item-photo--loaded" : ""}`}
-            />
+            <div className="item-img">
+            { (item.image ?? item.img) ? (
+              <img
+                src={item.image ?? item.img}
+                alt={item.name || ""}
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                onLoad={() => handleImageLoad(item.id)}
+                className={`item-photo${loadedIds.has(item.id) ? " item-photo--loaded" : ""}`}
+              />
+            ) : (
+              <div className={`item-photo item-photo--placeholder`} style={{background: '#dbeef8', width:'100%', height:'100%', borderRadius:8}} />
+            )}
             {(item.name || item.role || item.email || item.linkedinUrl) && (
               <TeamCard {...item} />
             )}

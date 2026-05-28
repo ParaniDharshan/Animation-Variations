@@ -11,10 +11,12 @@ import KoplLeadership from "../Components/about-components/7_KoplLeadership";
 import MissionVision from "../Components/about-components/8_MissionVision";
 import AboutCTA from "../Components/about-components/9_AboutCTA";
 import GmailButton from "../Components/common-components/Gmailbutton";
+import { ColorBendsBg } from "../Components/Sections/HeroVariants";
 
 function About() {
   return (
     <Box>
+      <ColorBendsBg />
       <Hero />
       <FounderHero />
       <EducationAndCareer />

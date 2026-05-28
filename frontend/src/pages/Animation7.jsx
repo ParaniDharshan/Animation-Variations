@@ -5,12 +5,12 @@ import ThreePillars from "../Components/home-components/2_ThreePillars";
 import HowItWorks from "../Components/home-components/3_HowItWorks";
 import Testimonal from "../Components/home-components/4_Testimonal";
 import GmailButton from "../Components/common-components/Gmailbutton";
-import { WavesBg } from "../Components/Sections/HeroVariants";
+import SpiralBg from "../Components/common-components/SpiralBg";
 
-function Home() {
+function Animation7() {
   return (
     <Box>
-      <WavesBg />
+      <SpiralBg />
       <Hero />
       <ThreePillars />
       <HowItWorks />
@@ -20,4 +20,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Animation7;

@@ -12,6 +12,9 @@ import TeamGallery from "./Components/gallery-components/TeamGallery";
 import EventsGallery from "./Components/gallery-components/EventsGallery";
 import WhyCRKL from "./pages/WhyCRKL";
 import Contact from "./pages/Contact";
+import Animation4 from "./pages/Animation4";
+import Animation6 from "./pages/Animation6";
+import Animation7 from "./pages/Animation7";
 import { PRIMARY, SECONDARY } from "./constants";
 
 const buildTheme = (mode) =>
@@ -42,7 +45,7 @@ const buildTheme = (mode) =>
 
 export default function App() {
   const [mode, setMode] = useState("light");
-  const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState("Animation 1");
   const theme = buildTheme(mode);
 
   useEffect(() => {
@@ -54,16 +57,18 @@ export default function App() {
 
   const renderTab = () => {
     switch (activeTab) {
-      case "Home":        return <Home />;
-      case "About":       return <About />;
-      case "Services":    return <Services />;
+      case "Animation 1": return <Home />;
+      case "Animation 2": return <About />;
+      case "Animation 3": return <Services />;
+      case "Animation 4": return <Animation4 />;
+      case "Animation 5": return <Contact />;
+      case "Animation 6": return <Animation6 />;
+      case "Animation 7": return <Animation7 />;
       case "Gallery":     return <Gallery setActiveTab={setActiveTab} />;
       case "Office":      return <OfficeGallery setActiveTab={setActiveTab} />;
       case "Team":        return <TeamGallery setActiveTab={setActiveTab} />;
       case "Events":      return <EventsGallery setActiveTab={setActiveTab} />;
-      case "Why CRKL":    return <WhyCRKL />;
-      case "Contact":     return <Contact />;
-      default:            return <Home />;
+      default:              return <Home />;
     }
   };
 

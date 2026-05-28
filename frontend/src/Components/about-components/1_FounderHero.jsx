@@ -1,9 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, Chip } from "@mui/material";
 import { Verified as VerifiedIcon } from "@mui/icons-material";
-import SpiralBg from "../common-components/SpiralBg";
 import { PRIMARY, SECONDARY } from "../../constants";
-import PeriImage from "../../assets/Peri_Sir_Image.png";
 
 export default function FounderHero() {
   return (
@@ -28,13 +26,17 @@ export default function FounderHero() {
         >
           {/* Left image block */}
           <Box sx={{ display: "flex", justifyContent: { xs: "center", md: "flex-start" }, alignSelf: { md: "end" }, mt: { xs: 2, md: 10 } }}>
-            <Box component="img" src={PeriImage} alt="M. Peri Periasamy" sx={{
+            <Box sx={{
               width:{ xs:260,md:380 }, height:{ xs:320,md:460 },
               borderRadius:"24px",
-              objectFit: 'cover',
-              border:`2px solid ${PRIMARY}35`,
+              display:"flex", alignItems:"center", justifyContent:"center",
+              background: (theme) => theme.palette.mode === 'dark' ? 'linear-gradient(135deg,#0b2b3b,#09304a)' : 'linear-gradient(135deg,#e8f6fb,#f1fbff)',
+              color: PRIMARY,
+              border:`2px solid ${PRIMARY}20`,
               boxShadow:`0 24px 80px ${PRIMARY}28`,
-            }} />
+              fontWeight:800,
+              fontSize:24,
+            }}>PK</Box>
           </Box>
 
           {/* Right content block */}

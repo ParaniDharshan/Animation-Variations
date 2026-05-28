@@ -21,10 +21,7 @@ const eventGroups = [
     title: "Inauguration",
     description: "Opening day moments and ceremony highlights.",
     accent: PRIMARY,
-    preview: new URL(
-      "../../assets/Events/Inaugration/Inaugration_cake_02.webp",
-      import.meta.url
-    ).href,
+    preview: "",
     Component: InaugurationGallery,
   },
   {
@@ -32,10 +29,7 @@ const eventGroups = [
     title: "Annual Conference",
     description: "Conference sessions, group photos, and event coverage.",
     accent: PRIMARY,
-    preview: new URL(
-      "../../assets/Events/Annual Conference/IMG-20250605-WA0005.webp",
-      import.meta.url
-    ).href,
+    preview: "",
     Component: AnnualConferenceGallery,
   },
   {
@@ -43,10 +37,7 @@ const eventGroups = [
     title: "Essex Visit",
     description: "Visit highlights and captured moments.",
     accent: PRIMARY,
-    preview: new URL(
-      "../../assets/Events/Essex Visit/Essex001.webp",
-      import.meta.url
-    ).href,
+    preview: "",
     Component: EssexVisitGallery,
   },
 ];
@@ -209,18 +200,22 @@ function EventsGallery({ setActiveTab }) {
                   }}
                   sx={{ height: "100%", position: "relative" }}
                 >
-                  <CardMedia
-                    component="img"
-                    image={group.preview}
-                    alt={group.title}
-                    sx={{
-                      position: "absolute",
-                      inset: 0,
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
+                  {group.preview ? (
+                    <CardMedia
+                      component="img"
+                      image={group.preview}
+                      alt={group.title}
+                      sx={{
+                        position: "absolute",
+                        inset: 0,
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                  ) : (
+                    <Box sx={{position:'absolute', inset:0, width:'100%', height:'100%', background:(theme)=> theme.palette.mode === 'dark' ? 'linear-gradient(180deg,#07131f,#0a1929)' : 'linear-gradient(180deg,#f8fcff,#eef8ff)'}} />
+                  )}
 
                   {/* FIX: responsive padding in card overlay */}
                   <Box

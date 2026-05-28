@@ -44,6 +44,8 @@ import {
   Star as StarIcon,
 } from "@mui/icons-material";
 
+import { GridScanBg } from "../Components/Sections/HeroVariants";
+
 // ── Brand tokens ──────────────────────────────────────────────
 const P  = "#1d89c8"; // primary blue
 const S  = "#3eb8af"; // secondary teal
@@ -309,6 +311,7 @@ export default function ContactPage() {
                      radial-gradient(ellipse at 20% 80%, ${S}12 0%, transparent 55%)`,
         position: "relative", overflow: "hidden",
       }}>
+        <GridScanBg />
         {/* decorative blobs */}
         {[
           { top: -60, right: -60, size: 260, color: `${P}12` },

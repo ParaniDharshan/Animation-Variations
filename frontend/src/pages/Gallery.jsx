@@ -12,29 +12,26 @@ import {
 import { useTheme } from "@mui/material/styles";
 import { PRIMARY, SECONDARY } from "../constants";
 
-const galleryCards = [
+  const galleryCards = [
   {
     key: "Office",
     title: "Office",
     description: "A look at the workspace and setup behind the brand.",
-    image: new URL("../assets/Office/Lobby.webp", import.meta.url).href,
+    image: "",
     accent: PRIMARY,
   },
   {
     key: "Team",
     title: "Team",
     description: "The people who support the daily work and delivery.",
-    image: new URL("../assets/Our Team/1.webp", import.meta.url).href,
+    image: "",
     accent: SECONDARY,
   },
   {
     key: "Events",
     title: "Events",
     description: "Annual conference moments shown in a dedicated page.",
-    image: new URL(
-      "../assets/Events/Annual Conference/IMG-20250605-WA0005.webp",
-      import.meta.url
-    ).href,
+    image: "",
     accent: PRIMARY,
   },
 ];
@@ -148,18 +145,22 @@ function Gallery({ setActiveTab }) {
                 onClick={() => setActiveTab?.(card.key)}
                 sx={{ height: "100%", position: "relative", display: "block" }}
               >
-                <CardMedia
-                  component="img"
-                  image={card.image}
-                  alt={card.title}
-                  sx={{
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
+                {card.image ? (
+                  <CardMedia
+                    component="img"
+                    image={card.image}
+                    alt={card.title}
+                    sx={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                ) : (
+                  <Box sx={{position:'absolute', inset:0, width:'100%', height:'100%', background:(theme)=> theme.palette.mode === 'dark' ? 'linear-gradient(180deg,#07131f,#0a1929)' : 'linear-gradient(180deg,#f8fcff,#eef8ff)'}} />
+                )}
                 <Box
                   sx={{
                     position: "absolute",

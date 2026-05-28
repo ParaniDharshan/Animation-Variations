@@ -10,11 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { SERVICES } from "../../constants";
 import { useTheme, alpha } from "@mui/material/styles";
 
-const SERVICE_MEDIA = {
-  "Accounting & Finance": new URL("../../assets/Videos/Accounting & Finance.mp4", import.meta.url).href,
-  "Tax Services": new URL("../../assets/Videos/Tax Services.mp4", import.meta.url).href,
-  "IT Services": new URL("../../assets/Videos/IT Services.mp4", import.meta.url).href,
-};
+const SERVICE_MEDIA = {};
 
 export default function ServicePillars() {
   const theme = useTheme();

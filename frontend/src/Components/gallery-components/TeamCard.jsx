@@ -3,72 +3,7 @@ import { Box, Chip, IconButton, Stack, Tooltip, Typography } from "@mui/material
 import EmailIcon from "@mui/icons-material/Email";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
-export const teamItems = [
-	{
-		id: "team-1",
-		image: new URL("../../assets/Our Team/1.webp", import.meta.url).href,
-		url: new URL("../../assets/Our Team/1.webp", import.meta.url).href,
-		height: 900,
-		name: "M. Peri Periasamy",
-		role: "Founder & CEO",
-		email: "team1@crklinc.com",
-		linkedinUrl: "https://www.linkedin.com/",
-	},
-	{
-		id: "team-2",
-		image: new URL("../../assets/Our Team/2.webp", import.meta.url).href,
-		url: new URL("../../assets/Our Team/2.webp", import.meta.url).href,
-		height: 900,
-		name: "Beulah Radhakrishnan",
-		role: "General Manager",
-		email: "team2@crklinc.com",
-		linkedinUrl: "https://www.linkedin.com/",
-	},
-	{
-		id: "team-3",
-		image: new URL("../../assets/Our Team/3.webp", import.meta.url).href,
-		url: new URL("../../assets/Our Team/3.webp", import.meta.url).href,
-		height: 900,
-		name: "Saravana Kumar",
-		role: "Client Relations",
-		category: "Finance",
-		email: "team3@crklinc.com",
-		linkedinUrl: "https://www.linkedin.com/",
-	},
-	{
-		id: "team-4",
-		image: new URL("../../assets/Our Team/4.webp", import.meta.url).href,
-		url: new URL("../../assets/Our Team/4.webp", import.meta.url).href,
-		height: 900,
-		name: "Bhala Murugan",
-		role: "Administration",
-		category: "Finance",
-		email: "team4@crklinc.com",
-		linkedinUrl: "https://www.linkedin.com/",
-	},
-	{
-		id: "team-5",
-		image: new URL("../../assets/Our Team/5.webp", import.meta.url).href,
-		url: new URL("../../assets/Our Team/5.webp", import.meta.url).href,
-		height: 900,
-		name: "Ragul",
-		role: "Support",
-		category: "Finance",
-		email: "team5@crklinc.com",
-		linkedinUrl: "https://www.linkedin.com/",
-	},
-	{
-		id: "team-6",
-		image: new URL("../../assets/Our Team/7.webp", import.meta.url).href,
-		url: new URL("../../assets/Our Team/7.webp", import.meta.url).href,
-		height: 900,
-		name: "Vasanth",
-		role: "Leadership",
-		category: "IT",
-		email: "team6@crklinc.com",
-		linkedinUrl: "https://www.linkedin.com/",
-	},
-];
+export const teamItems = [];
 
 function TeamCard({ name, role, category, email, linkedinUrl }) {
 	return (

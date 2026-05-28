@@ -5,14 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { HERO_BG } from "../../constants";
 import CTAButton from "../common-components/CTAButton";
 
-const officeItems = [
-    { id: "office-1", img: new URL("../../assets/Office/Building.webp", import.meta.url).href, url: new URL("../../assets/Office/Building.webp", import.meta.url).href, height: 500 },
-    { id: "office-2", img: new URL("../../assets/Office/Office space.webp", import.meta.url).href, url: new URL("../../assets/Office/Office space.webp", import.meta.url).href, height: 500 },
-    { id: "office-3", img: new URL("../../assets/Office/Conference Hall.webp", import.meta.url).href, url: new URL("../../assets/Office/Conference Hall.webp", import.meta.url).href, height: 500 },
-    { id: "office-4", img: new URL("../../assets/Office/Lobby.webp", import.meta.url).href, url: new URL("../../assets/Office/Lobby.webp", import.meta.url).href, height: 500 },
-    { id: "office-5", img: new URL("../../assets/Office/Corrider.webp", import.meta.url).href, url: new URL("../../assets/Office/Corrider.webp", import.meta.url).href, height: 500 },
-    { id: "office-6", img: new URL("../../assets/Office/offc spac2.webp", import.meta.url).href, url: new URL("../../assets/Office/offc spac2.webp", import.meta.url).href, height: 500 },
-];
+const officeItems = [];
 
 function OfficeGallery(props) {
     const heroImg = HERO_BG?.office;
