@@ -7,7 +7,7 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { SERVICES } from "../../constants";
+import { SERVICES } from "../../Constants.js";
 import { useTheme, alpha } from "@mui/material/styles";
 
 const SERVICE_MEDIA = {};

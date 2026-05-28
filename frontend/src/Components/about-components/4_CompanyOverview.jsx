@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, Chip, Typography, Card } from "@mui/material";
-import { PRIMARY, SECONDARY } from "../../constants";
+import { PRIMARY, SECONDARY } from "../../Constants.js";
 
 export default function CompanyOverview() {
 	return (

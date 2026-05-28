@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, Typography, Divider } from "@mui/material";
-import { PRIMARY, SECONDARY, NAV_LINKS, CONTACT_INFO } from "../../constants";
+import { PRIMARY, SECONDARY, NAV_LINKS, CONTACT_INFO } from "../../Constants.js";
 
 function Footer({ mode }) {
   return (

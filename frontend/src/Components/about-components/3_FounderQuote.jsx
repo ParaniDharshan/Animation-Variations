@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
 import QuoteIcon from "@mui/icons-material/FormatQuote";
-import { PRIMARY } from "../../constants";
+import { PRIMARY } from "../../Constants.js";
 
 export default function FounderQuote() {
   return (

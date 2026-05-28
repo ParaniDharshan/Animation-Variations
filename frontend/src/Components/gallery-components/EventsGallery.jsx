@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { PRIMARY } from "../../constants";
+import { PRIMARY } from "../../Constants.js";
 import CTAButton from "../common-components/CTAButton";
 import InaugurationGallery from "./events-components/InaugurationGallery";
 import AnnualConferenceGallery from "./events-components/AnnualConferenceGallery";

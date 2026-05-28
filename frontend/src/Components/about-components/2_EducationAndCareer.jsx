@@ -25,7 +25,7 @@ import {
   ExpandMore as ExpandMoreIcon,
   ExpandLess as ExpandLessIcon,
 } from "@mui/icons-material";
-import { PRIMARY, SECONDARY } from "../../constants";
+import { PRIMARY, SECONDARY } from "../../Constants.js";
 
 const P = PRIMARY;
 const S = SECONDARY;

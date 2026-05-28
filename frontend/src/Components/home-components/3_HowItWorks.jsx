@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, Chip, Card } from "@mui/material";
 import CTAButton from "../common-components/CTAButton";
-import { PRIMARY } from "../../constants";
+import { PRIMARY } from "../../Constants.js";
 
 export default function HowItWorks() {
   const steps = [

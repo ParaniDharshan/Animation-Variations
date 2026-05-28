@@ -24,7 +24,7 @@ import React, { useRef, useEffect } from "react";
 import { Box, Container, Grid, Typography, Chip } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import CTAButton from "../common-components/CTAButton"; // adjust path if needed
-import { PRIMARY, SECONDARY } from "../../constants";   // your colour tokens
+import { PRIMARY, SECONDARY } from "../../Constants.js";   // your colour tokens
 
 // ═════════════════════════════════════════════════════════════════════════════
 // SHARED HERO CONTENT

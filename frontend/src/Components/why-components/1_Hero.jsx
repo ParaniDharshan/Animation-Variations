@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Container, Typography, Chip } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import { SECONDARY } from "../../constants";
+import { SECONDARY } from "../../Constants.js";
 
 export default function WhyHero() {
   const theme = useTheme();

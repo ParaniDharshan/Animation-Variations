@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Container, Typography, Chip, Accordion, AccordionSummary, AccordionDetails, Stack, Divider } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { PRIMARY, SECONDARY, CONCERNS } from "../../constants";
+import { PRIMARY, SECONDARY, CONCERNS } from "../../Constants.js";
 
 const FAQAccordion = styled(Accordion)(({ theme }) => ({
   borderRadius: 18,

@@ -4,7 +4,7 @@ import {
   ArrowForward as ArrowForwardIcon,
   ArrowBack as ArrowBackIcon,
 } from "@mui/icons-material";
-import { PRIMARY, SECONDARY, BOOKING_URL } from "../../constants";
+import { PRIMARY, SECONDARY, BOOKING_URL } from "../../Constants.js";
 
 function CTAButton({
   text,

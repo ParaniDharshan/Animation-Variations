@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
-import { PRIMARY } from "../../constants";
+import { PRIMARY } from "../../Constants.js";
 
 export default function MissionVision() {
 	return (

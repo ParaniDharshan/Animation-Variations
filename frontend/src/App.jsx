@@ -15,7 +15,7 @@ import Contact from "./pages/Contact";
 import Animation4 from "./pages/Animation4";
 import Animation6 from "./pages/Animation6";
 import Animation7 from "./pages/Animation7";
-import { PRIMARY, SECONDARY } from "./constants.js";
+import { PRIMARY, SECONDARY } from "./Constants.js";
 
 const buildTheme = (mode) =>
   createTheme({

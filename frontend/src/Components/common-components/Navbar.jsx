@@ -8,7 +8,7 @@ import {
   Menu as MenuIcon, Close as CloseIcon,
   DarkMode as DarkModeIcon, LightMode as LightModeIcon,
 } from "@mui/icons-material";
-import { PRIMARY, SECONDARY, BOOKING_URL, NAV_LINKS } from "../../constants";
+import { PRIMARY, SECONDARY, BOOKING_URL, NAV_LINKS } from "../../Constants.js";
 
 function Navbar({ mode, toggleMode, activeTab, setActiveTab }) {
   const [drawerOpen, setDrawerOpen] = useState(false);

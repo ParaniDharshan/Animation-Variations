@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import Masonry from "./Masonry";
 import { useTheme } from "@mui/material/styles";
-import { HERO_BG } from "../../constants";
+import { HERO_BG } from "../../Constants.js";
 import CTAButton from "../common-components/CTAButton";
 
 const officeItems = [];

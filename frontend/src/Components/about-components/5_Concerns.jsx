@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, Card, Typography, Chip, Divider, Button } from "@mui/material";
-import { PRIMARY, SECONDARY, CONCERNS } from "../../constants";
+import { PRIMARY, SECONDARY, CONCERNS } from "../../Constants.js";
 
 export default function Concerns() {
 	return (

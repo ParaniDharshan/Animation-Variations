@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, Chip } from "@mui/material";
  
-import { PRIMARY } from "../../constants";
+import { PRIMARY } from "../../Constants.js";
 
 export default function ServicesHero() {
   return (

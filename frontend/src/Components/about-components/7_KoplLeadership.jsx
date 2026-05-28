@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Chip, Typography, Card, Grid, Avatar } from "@mui/material";
-import { PRIMARY, SECONDARY } from "../../constants";
+import { PRIMARY, SECONDARY } from "../../Constants.js";
 
 export default function KoplLeadership() {
 	return (

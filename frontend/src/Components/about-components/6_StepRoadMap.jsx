@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Container, Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { PRIMARY, SECONDARY, ROADMAP } from "../../constants";
+import { PRIMARY, SECONDARY, ROADMAP } from "../../Constants.js";
 
 export default function StepRoadMap() {
 	const [expanded, setExpanded] = useState(false);

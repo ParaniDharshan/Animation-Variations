@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { PRIMARY, SECONDARY } from "../constants";
+import { PRIMARY, SECONDARY } from "../Constants.js";
 
   const galleryCards = [
   {

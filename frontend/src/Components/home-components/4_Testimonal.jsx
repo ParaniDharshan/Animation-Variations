@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, Chip, Card, Divider, Avatar } from "@mui/material";
 import QuoteIcon from "@mui/icons-material/FormatQuote";
-import { TESTIMONIALS, PRIMARY, SECONDARY } from "../../constants";
+import { TESTIMONIALS, PRIMARY, SECONDARY } from "../../Constants.js";
 
 export default function Testimonal() {
   return (

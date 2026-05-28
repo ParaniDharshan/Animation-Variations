@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Container, Typography, Chip } from "@mui/material";
 import { Verified as VerifiedIcon } from "@mui/icons-material";
-import { PRIMARY, SECONDARY } from "../../constants";
+import { PRIMARY, SECONDARY } from "../../Constants.js";
 
 export default function FounderHero() {
   return (

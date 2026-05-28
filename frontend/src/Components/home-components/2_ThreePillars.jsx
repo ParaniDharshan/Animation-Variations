@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography, Chip, Card, CardContent } from "@mui/material";
-import { SERVICES, PRIMARY, SECONDARY } from "../../constants";
+import { SERVICES, PRIMARY, SECONDARY } from "../../Constants.js";
 
 export default function ThreePillars() {
   return (
