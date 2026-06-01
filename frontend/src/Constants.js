@@ -17,6 +17,9 @@ export const NAV_LINKS = [
 	"a11",
 	"a12",
 	"a13",
+	"a14",
+	"a15",
+	"a16"
 ];
 
 export const SERVICES = [

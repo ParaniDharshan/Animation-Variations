@@ -9,6 +9,7 @@ import {
   DarkMode as DarkModeIcon, LightMode as LightModeIcon,
 } from "@mui/icons-material";
 import { PRIMARY, SECONDARY, BOOKING_URL, NAV_LINKS } from "../../Constants.js";
+import CRKL_LOGO from "../../assets/CRKL_WEB_LOGO-removebg-preview.png";
 
 function Navbar({ mode, toggleMode, activeTab, setActiveTab }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -53,13 +54,16 @@ function Navbar({ mode, toggleMode, activeTab, setActiveTab }) {
             onClick={() => navigate("Home")}
             sx={{ flexGrow: 1, cursor: "pointer", display: "flex", alignItems: "baseline", gap: 1 }}
           >
-            <Typography sx={{
-              fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: { xs: "1.2rem", md: "1.4rem" },
-              background: `linear-gradient(90deg,${PRIMARY},${SECONDARY})`,
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-            }}>
-              CRKL Inc.
-            </Typography>
+            <Box
+              component="img"
+              src={CRKL_LOGO}
+              alt="CRKL Inc. Logo"
+              sx={{
+                height: { xs: 40, md: 50 }, // responsive sizing
+                width: "auto",
+                display: "block",
+              }}
+            />
           </Box>
 
           {/* Desktop nav */}

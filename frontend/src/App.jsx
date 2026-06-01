@@ -22,6 +22,9 @@ import Animation10 from "./pages/Animation10.jsx";
 import Animation11 from "./pages/Animation11.jsx";
 import Animation12 from "./pages/Animation12.jsx";
 import Animation13 from "./pages/Animation13.jsx";
+import Animation14 from "./pages/Animation14.jsx";
+import Animation15 from "./pages/Animation15.jsx";
+import Animation16 from "./pages/Animation16.jsx";
 
 const buildTheme = (mode) =>
   createTheme({
@@ -76,6 +79,9 @@ export default function App() {
       case "a11": return <Animation11 />;
       case "a12": return <Animation12 />;
       case "a13": return <Animation13 />;
+      case "a14": return <Animation14 />;
+      case "a15": return <Animation15 />;
+      case "a16": return <Animation16 />;
       case "Gallery":     return <Gallery setActiveTab={setActiveTab} />;
       case "Office":      return <OfficeGallery setActiveTab={setActiveTab} />;
       case "Team":        return <TeamGallery setActiveTab={setActiveTab} />;

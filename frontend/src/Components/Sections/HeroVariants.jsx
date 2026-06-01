@@ -729,20 +729,20 @@ export function HeroGridScan() {
 //   amplitude  {number}  wave distortion px      default: 10
 // ═════════════════════════════════════════════════════════════════════════════
 export function LineWavesBg({
-  color = PRIMARY,
+  color     = PRIMARY,
   ringCount = 14,
-  speed = 0.022,
+  speed     = 0.022,
   amplitude = 10,
 }) {
   const ref = useRef(null);
 
   useEffect(() => {
     const canvas = ref.current;
-    const ctx = canvas.getContext("2d");
-    let raf, t = 0;
+    const ctx    = canvas.getContext("2d");
+    let raf, t   = 0;
 
     const resize = () => {
-      canvas.width = canvas.offsetWidth;
+      canvas.width  = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
     };
     resize();
@@ -751,27 +751,32 @@ export function LineWavesBg({
     const draw = () => {
       t += speed;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const W = canvas.width;
-      const H = canvas.height;
-
-      const size = Math.min(W, H);   // ✅ ensure perfect fit
-      const cx = W / 2;
-      const cy = H / 2;
-      const maxR = size * 0.45;      // ✅ use min dimension
+      const W    = canvas.width, H = canvas.height;
+      const cx   = W / 2, cy = H / 2;
+      const maxR = Math.max(W, H) * 0.55;
 
       for (let i = 1; i <= ringCount; i++) {
-        const r = (maxR / ringCount) * i;
+        const baseR  = (maxR / ringCount) * i;
+        const phase  = t - i * 0.28;
+        const steps  = Math.max(180, Math.round(baseR * 2.5));
 
         ctx.beginPath();
-        ctx.arc(cx, cy, r, 0, Math.PI * 2);  // ✅ perfect circle
-
+        for (let j = 0; j <= steps; j++) {
+          const angle = (j / steps) * Math.PI * 2;
+          const wave  =
+            amplitude * Math.sin(angle * 4 + phase) * 0.7 +
+            amplitude * 0.4 * Math.sin(angle * 2 - phase * 0.6);
+          const r  = baseR + wave;
+          const px = cx + Math.cos(angle) * r;
+          const py = cy + Math.sin(angle) * r;
+          j === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+        }
+        ctx.closePath();
         ctx.strokeStyle = color;
         ctx.globalAlpha = 0.08 + (1 - i / ringCount) * 0.09;
-        ctx.lineWidth = 2;
+        ctx.lineWidth   = 2;
         ctx.stroke();
       }
-
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(draw);
     };
@@ -781,7 +786,7 @@ export function LineWavesBg({
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -821,7 +826,7 @@ export function CirclePulseBg({
   color = PRIMARY,
   pulseCount = 5,
   speed = 0.002,
-  maxRadiusRatio = 0.45,
+  maxRadiusRatio = 0.75,
 }) {
   const ref = useRef(null);
 
@@ -894,6 +899,7 @@ export function CirclePulseBg({
       style={{
         position: "absolute",
         inset: 0,
+        transform: "translateX(50%)",
         width: "100%",
         height: "100%",
         pointerEvents: "none",
@@ -1356,6 +1362,241 @@ export function ScrollCircleBg({
         filter: "blur(20px)",
       }}
     />
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// THEME TOKENS
+// ─────────────────────────────────────────────────────────────
+const THEMES = {
+  blue: {
+    primary:   "#1d89c8",
+    secondary: "#3eb8af",
+  },
+  teal: {
+    primary:   "#3eb8af",
+    secondary: "#1d89c8",
+  },
+  gold: {
+    primary:   "#e6a817",
+    secondary: "#3eb8af",
+  },
+  violet: {
+    primary:   "#7c3aed",
+    secondary: "#3eb8af",
+  },
+};
+
+// ─────────────────────────────────────────────────────────────
+// CRKL_ANIMS — inject this <style> once at app root
+// ─────────────────────────────────────────────────────────────
+export const CRKL_ANIMS = `
+  /* ── 1. OrbitingDots ── */
+  @keyframes crklOrbit1 {
+    from { transform: rotate(0deg)   translateX(var(--r1,115px)) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(var(--r1,115px)) rotate(-360deg); }
+  }
+  @keyframes crklOrbit2 {
+    from { transform: rotate(0deg)   translateX(var(--r2,185px)) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(var(--r2,185px)) rotate(-360deg); }
+  }
+  @keyframes crklOrbit3 {
+    from { transform: rotate(0deg)   translateX(var(--r3,258px)) rotate(0deg); }
+    to   { transform: rotate(-360deg) translateX(var(--r3,258px)) rotate(360deg); }
+  }
+
+  /* ── 2. SpiralPulse ── */
+  @keyframes crklPulse {
+    0%   { transform: scale(0.25); opacity: 0.75; }
+    100% { transform: scale(1.7);  opacity: 0; }
+  }
+
+  /* ── 3. HelixWave ── */
+  @keyframes crklHelix {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── 4. BreathingCircle ── */
+  @keyframes crklBreathe {
+    0%,100% { transform: scale(1);    opacity: var(--bmin, 0.18); }
+    50%     { transform: scale(1.22); opacity: var(--bmax, 0.28); }
+  }
+
+  /* ── 5. RotatingArc ── */
+  @keyframes crklArcCW  { to { transform: rotate(360deg);  } }
+  @keyframes crklArcCCW { to { transform: rotate(-360deg); } }
+`;
+
+// Helper: inject keyframes once
+const INJECTED = { current: false };
+function useAnimStyles() {
+  if (typeof document !== "undefined" && !INJECTED.current) {
+    const tag = document.createElement("style");
+    tag.textContent = CRKL_ANIMS;
+    document.head.appendChild(tag);
+    INJECTED.current = true;
+  }
+}
+
+export function OrbitingDots({
+  isDark = true,
+  theme = "blue",
+  cx = "62%",
+  cy = "50%",
+  radii  = [115, 185, 258],
+  counts = [3, 5, 7],
+  speeds = [11, 17, 26],
+  sizes  = [13, 11, 8],
+}) {
+  useAnimStyles();
+  const { primary, secondary } = THEMES[theme] || THEMES.blue;
+ 
+  const colors = [
+    isDark ? `${primary}cc`   : `${primary}99`,
+    isDark ? `${secondary}bb` : `${secondary}80`,
+    isDark ? `${primary}33` : `${primary}22`,
+  ];
+  const anims = ["crklOrbit1", "crklOrbit2", "crklOrbit3"];
+ 
+  return (
+    <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden" }}>
+      {radii.map((r, ri) =>
+        Array.from({ length: counts[ri] }).map((_, di) => {
+          const delay = -((speeds[ri] / counts[ri]) * di);
+          const initAngle = (360 / counts[ri]) * di;
+          return (
+            <div
+              key={`${ri}-${di}`}
+              style={{
+                position: "absolute",
+                top: cy, left: cx,
+                width: sizes[ri], height: sizes[ri],
+                borderRadius: "50%",
+                background: colors[ri],
+                transformOrigin: "0 0",
+                animation: `${anims[ri]} ${speeds[ri]}s linear infinite`,
+                animationDelay: `${delay}s`,
+                transform: `rotate(${initAngle}deg) translateX(${r}px) rotate(-${initAngle}deg)`,
+                [`--r${ri + 1}`]: `${r}px`,
+              }}
+            />
+          );
+        })
+      )}
+    </div>
+  );
+}
+ 
+// ─────────────────────────────────────────────────────────────
+// 3. HelixWave
+// props: isDark, theme="blue", bottom="18%", speed=18
+// ─────────────────────────────────────────────────────────────
+export function HelixWave({
+  isDark = true,
+  theme = "blue",
+  bottom = "18%",
+  speed = 18,
+}) {
+  useAnimStyles();
+  const { primary, secondary } = THEMES[theme] || THEMES.blue;
+ 
+  const W = 1200; const H = 80; const freq = 5; const amp = 22;
+  const wave1 = Array.from({ length: W * 2 + 1 }, (_, x) => {
+    const y = H / 2 + amp * Math.sin((x / W) * freq * Math.PI * 2);
+    return `${x === 0 ? "M" : "L"} ${x} ${y.toFixed(2)}`;
+  }).join(" ");
+  const wave2 = Array.from({ length: W * 2 + 1 }, (_, x) => {
+    const y = H / 2 + amp * Math.sin((x / W) * freq * Math.PI * 2 + Math.PI * 0.6);
+    return `${x === 0 ? "M" : "L"} ${x} ${y.toFixed(2)}`;
+  }).join(" ");
+ 
+  return (
+    <div
+      style={{
+        position: "absolute",
+        bottom,
+        left: 0,
+        width: "200%",
+        height: 80,
+        animation: `crklHelix ${speed}s linear infinite`,
+        pointerEvents: "none",
+        opacity: 1
+      }}
+    >
+      <svg
+        viewBox={`0 0 ${W * 2} ${H}`}
+        preserveAspectRatio="none"
+        style={{ width: "100%", height: "100%" }}
+      >
+        <path d={wave1} fill="none" stroke={isDark ? `${secondary}55` : `${primary}40`} strokeWidth="1.8" />
+        <path d={wave2} fill="none" stroke={isDark ? `${primary}40` : `${secondary}30`} strokeWidth="1.2" strokeDasharray="6 5" />
+      </svg>
+    </div>
+  );
+}
+ 
+// ─────────────────────────────────────────────────────────────
+// 5. RotatingArc
+// props: isDark, theme="blue", cx="50%", cy="50%"
+//        arcs=[{r, dash, dur, dir, width}]
+// ─────────────────────────────────────────────────────────────
+export function RotatingArc({
+  isDark = true,
+  theme = "blue",
+  cx = "50%",
+  cy = "50%",
+  arcs = [
+    { r: 95,  dash: "40 20",  dur: "14s",  dir: "CW",  width: 1.5 },
+    { r: 145, dash: "60 30",  dur: "20s",  dir: "CCW", width: 1.2 },
+    { r: 210, dash: "25 45",  dur: "32s",  dir: "CW",  width: 0.8 },
+    { r: 295, dash: "80 50",  dur: "42s",  dir: "CCW", width: 0.6 },
+  ],
+}) {
+  useAnimStyles();
+  const { primary, secondary } = THEMES[theme] || THEMES.blue;
+ 
+  const colors = [
+    isDark ? `${primary}55`          : `${primary}42`,
+    isDark ? `${secondary}45`        : `${secondary}35`,
+    isDark ? "rgba(255,255,255,0.12)": "rgba(29,137,200,0.15)",
+    isDark ? `${primary}30`          : `${primary}25`,
+  ];
+ 
+  const diam = (arcs[arcs.length - 1]?.r || 295) * 2 + 60;
+ 
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: cy, left: cx,
+        width: diam, height: diam,
+        marginTop: -diam / 2, marginLeft: -diam / 2,
+        pointerEvents: "none",
+        overflow: "visible",
+      }}
+    >
+      <svg
+        viewBox={`0 0 ${diam} ${diam}`}
+        style={{ width: "100%", height: "100%", overflow: "visible" }}
+      >
+        {arcs.map((arc, i) => (
+          <circle
+            key={i}
+            cx={diam / 2} cy={diam / 2}
+            r={arc.r}
+            fill="none"
+            stroke={colors[i % colors.length]}
+            strokeWidth={arc.width}
+            strokeDasharray={arc.dash}
+            style={{
+              transformOrigin: `${diam / 2}px ${diam / 2}px`,
+              animation: `crklArc${arc.dir} ${arc.dur} linear infinite`,
+            }}
+          />
+        ))}
+      </svg>
+    </div>
   );
 }
 
