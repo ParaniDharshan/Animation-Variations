@@ -19,7 +19,7 @@ export default function Hero() {
           <Grid item xs={12} md={12} sx={{ order: { xs: 2, md: 1 } }}>
             <Box sx={{ mx: "auto", textAlign: "left" }}>
               <Typography variant="h1" sx={{ fontSize: { xs: "2.4rem", sm: "3rem", md: "3.6rem" }, lineHeight: 1.25, mb: 3, fontWeight: 700, "& span": { background: `linear-gradient(135deg,${PRIMARY},${SECONDARY})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" } }}>
-                <span>17 Animations</span> One Experience.
+                <span>16 Animations</span> One Experience.
               </Typography>
 
               <Typography variant="body1" sx={{ maxWidth: 900, fontSize: { xs: "1rem", md: "1.15rem" }, opacity: 0.85, mb: 4, lineHeight: 1.9 }}>
