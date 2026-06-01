@@ -15,7 +15,13 @@ import Contact from "./pages/Contact";
 import Animation4 from "./pages/Animation4";
 import Animation6 from "./pages/Animation6";
 import Animation7 from "./pages/Animation7";
+import Animation8 from "./pages/Animation8";
 import { PRIMARY, SECONDARY } from "./Constants.js";
+import Animation9 from "./pages/Animation9.jsx";
+import Animation10 from "./pages/Animation10.jsx";
+import Animation11 from "./pages/Animation11.jsx";
+import Animation12 from "./pages/Animation12.jsx";
+import Animation13 from "./pages/Animation13.jsx";
 
 const buildTheme = (mode) =>
   createTheme({
@@ -45,7 +51,7 @@ const buildTheme = (mode) =>
 
 export default function App() {
   const [mode, setMode] = useState("light");
-  const [activeTab, setActiveTab] = useState("Animation 1");
+  const [activeTab, setActiveTab] = useState("a1");
   const theme = buildTheme(mode);
 
   useEffect(() => {
@@ -57,13 +63,19 @@ export default function App() {
 
   const renderTab = () => {
     switch (activeTab) {
-      case "Animation 1": return <Home />;
-      case "Animation 2": return <About />;
-      case "Animation 3": return <Services />;
-      case "Animation 4": return <Animation4 />;
-      case "Animation 5": return <Contact />;
-      case "Animation 6": return <Animation6 />;
-      case "Animation 7": return <Animation7 />;
+      case "a1": return <Home />;
+      case "a2": return <About />;
+      case "a3": return <Services />;
+      case "a4": return <Animation4 />;
+      case "a5": return <Contact />;
+      case "a6": return <Animation6 />;
+      case "a7": return <Animation7 />;
+      case "a8": return <Animation8 />;
+      case "a9": return <Animation9 />;
+      case "a10": return <Animation10 />;
+      case "a11": return <Animation11 />;
+      case "a12": return <Animation12 />;
+      case "a13": return <Animation13 />;
       case "Gallery":     return <Gallery setActiveTab={setActiveTab} />;
       case "Office":      return <OfficeGallery setActiveTab={setActiveTab} />;
       case "Team":        return <TeamGallery setActiveTab={setActiveTab} />;

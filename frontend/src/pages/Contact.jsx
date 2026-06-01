@@ -302,10 +302,11 @@ export default function ContactPage() {
   }
 
   return (
-    <Box sx={{ pt: { xs: 9, md: 10 } }}>
+    <Box>
 
       {/* ── HERO ───────────────────────────────────────────── */}
       <Box sx={{
+        minHeight: "100vh", display: "flex", alignItems: "center",
         py: { xs: 8, md: 11 },
         background: `radial-gradient(ellipse at 70% 40%, ${P}18 0%, transparent 60%),
                      radial-gradient(ellipse at 20% 80%, ${S}12 0%, transparent 55%)`,

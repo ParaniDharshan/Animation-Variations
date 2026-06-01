@@ -4,13 +4,19 @@ export const SECONDARY = "#3eb8af";
 export const BOOKING_URL = "#";
 
 export const NAV_LINKS = [
-	"Animation 1",
-	"Animation 2",
-	"Animation 3",
-	"Animation 4",
-	"Animation 5",
-	"Animation 6",
-	"Animation 7",
+	"a1",
+	"a2",
+	"a3",
+	"a4",
+	"a5",
+	"a6",
+	"a7",
+	"a8",
+	"a9",
+	"a10",
+	"a11",
+	"a12",
+	"a13",
 ];
 
 export const SERVICES = [

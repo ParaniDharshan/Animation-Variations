@@ -60,13 +60,10 @@ function Navbar({ mode, toggleMode, activeTab, setActiveTab }) {
             }}>
               CRKL Inc.
             </Typography>
-            <Typography sx={{ fontSize: "0.7rem", opacity: 0.55, display: { xs: "none", sm: "block" } }}>
-              U.S.-Managed Business Outsourcing
-            </Typography>
           </Box>
 
           {/* Desktop nav */}
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.5, alignItems: "center" }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 0.25, alignItems: "center", flexWrap: "nowrap" }}>
             {NAV_LINKS.map((link) => (
               <Button
                 key={link} onClick={() => navigate(link)}
@@ -74,7 +71,10 @@ function Navbar({ mode, toggleMode, activeTab, setActiveTab }) {
                   color: activeTab === link ? PRIMARY : isDark ? "rgba(255,255,255,0.8)" : "rgba(20,40,60,0.8)",
                   fontWeight: activeTab === link ? 700 : 500,
                   borderBottom: activeTab === link ? `2px solid ${PRIMARY}` : "2px solid transparent",
-                  borderRadius: 0, px: 1.5, pb: 0.25,
+                  borderRadius: 0, px: 1, pb: 0.25,
+                  minWidth: "auto",
+                  whiteSpace: "nowrap",
+                  fontSize: "0.86rem",
                   "&:hover": { color: PRIMARY, background: "transparent" },
                 }}
               >
@@ -86,18 +86,6 @@ function Navbar({ mode, toggleMode, activeTab, setActiveTab }) {
                 {isDark ? <LightModeIcon /> : <DarkModeIcon />}
               </IconButton>
             </Tooltip>
-            <Button
-              variant="contained" size="small"
-              href={BOOKING_URL} target="_blank"
-              sx={{
-                ml: 1.5, px: 2.5, py: 1,
-                background: `linear-gradient(135deg,${PRIMARY},${SECONDARY})`,
-                boxShadow: `0 4px 16px ${PRIMARY}55`,
-                "&:hover": { boxShadow: `0 6px 24px ${PRIMARY}88` },
-              }}
-            >
-              Book a Call
-            </Button>
           </Box>
 
           {/* Mobile */}

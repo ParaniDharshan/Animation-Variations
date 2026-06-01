@@ -6,7 +6,7 @@ import { PRIMARY, SECONDARY } from "../../Constants.js";
 export default function Hero() {
   return (
     <Box sx={{
-      minHeight: "100vh", display: "flex", alignItems: "center", mb:{ xs:6, md:8 },
+      minHeight: "100vh", display: "flex", alignItems: "center",
       pt: { xs: 10, md: 8 },
       background: `radial-gradient(ellipse at 70% 40%,${SECONDARY}22 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,${PRIMARY}18 0%,transparent 50%)`,
       position: "relative", overflow: "hidden",
